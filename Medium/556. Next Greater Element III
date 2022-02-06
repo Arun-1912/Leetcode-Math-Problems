@@ -1,0 +1,47 @@
+class Solution {
+    public int nextGreaterElement(int n) {
+        if (n <= 11) return -1; 
+        String str = nextGreaterElement(String.valueOf(n));
+        if (str.isEmpty()) return -1;
+        long res = Long.parseLong(str);
+        return res > Integer.MAX_VALUE ? -1 : (int) res;
+    }
+    
+    private String nextGreaterElement(String num) {
+        if (num == null || num.length() <= 1) return "";
+        char[] chs = num.toCharArray();
+        chs = nextGreaterElement(chs);
+        return String.valueOf(chs);
+    }
+    
+    private char[] nextGreaterElement(char[] chs) {
+        if (chs == null || chs.length <= 1) return new char[0];
+        final int N = chs.length;
+        // find position
+        int i = N - 2;
+        while (i >= 0 && chs[i] >= chs[i+1]) {
+            i--;
+        }
+        if (i < 0) return new char[0];
+        int j = N - 1;
+        while (j > i && chs[j] <= chs[i]) {
+            j--;
+        }
+        swap(chs, i, j);
+        reverse(chs, i + 1);
+        return chs;
+    }
+    
+    private void reverse(char[] chs, int start) {
+        int l = start, r = chs.length - 1;
+        while (l < r) {
+            swap(chs, l++, r--);
+        }
+    }
+    
+    private void swap(char[] chs, int i, int j) {
+        char ch = chs[i];
+        chs[i] = chs[j];
+        chs[j] = ch;
+    }
+}
