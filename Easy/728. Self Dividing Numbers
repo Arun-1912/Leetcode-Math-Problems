@@ -1,0 +1,24 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer>list = new ArrayList<>();
+        boolean add;
+        int n,digit;
+        for(int i=left;i<=right;i++){
+            n=i;
+            add = true;
+            
+            while(n>0){
+                digit = n%10;
+                if(digit==0 || i%digit != 0){
+                    add = false;
+                    break;
+                }
+                n = n/10;
+            }
+            if(add){
+                list.add(i);
+            }
+        }
+        return list;
+    }
+}
