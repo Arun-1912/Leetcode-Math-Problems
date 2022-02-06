@@ -1,0 +1,31 @@
+class Solution {
+    public boolean isHappy(int n) {
+          
+        Set<Integer>set = new HashSet<>();
+        int digit;
+        int sum;
+        
+        while(set.add(n)){
+            
+            sum = 0;
+            
+            while(n>0){
+                
+                digit = n % 10;
+                sum += digit*digit;
+                n = n/10;
+            }
+            
+            if (sum == 1){
+                return true;
+                
+            }
+            if (sum>1){
+                n = sum;
+            }
+        }
+        return false;
+        
+    }
+
+}
