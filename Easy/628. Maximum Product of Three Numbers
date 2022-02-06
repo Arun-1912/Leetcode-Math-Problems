@@ -1,0 +1,17 @@
+class Solution {
+    public int maximumProduct(int[] nums) {
+        Arrays.sort(nums);
+        
+        int ans = 1 ;
+        for(int i=nums.length-1,count=1;count<=3;i--){
+            ans = ans*nums[i];
+            count++;
+        }
+        int pans = 0;
+        if(nums[1] <0){
+            pans = nums[0]*nums[1]*nums[nums.length-1];
+        }
+        ans = Math.max(ans,pans);
+        return ans;
+    }
+}
